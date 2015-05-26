@@ -44,12 +44,12 @@ function loadXML(url, bNotFeed, bTryOPML)
 	var yql, q = '';
 	if (bNotFeed)	{
 		if (bTryOPML) {
-			yql = 'http://query.yahooapis.com/v1/public/yql?callback=gotOPML&format=xml&q=';
+			yql = 'https://query.yahooapis.com/v1/public/yql?callback=gotOPML&format=xml&q=';
 			q = encodeURIComponent(`select * from xml where url="${url}"`);
 		}
 		else
 		{
-			yql = 'http://query.yahooapis.com/v1/public/yql?callback=gotHTML&format=xml&q=';
+			yql = 'https://query.yahooapis.com/v1/public/yql?callback=gotHTML&format=xml&q=';
 			q = encodeURIComponent(`select * from html where url="${url}" and xpath="*"`);
 		}
   	}
@@ -65,8 +65,8 @@ function loadXML(url, bNotFeed, bTryOPML)
 			});
 			return;
 		}
- 		//yql = `http://anyorigin.com/get/?url=${url}&callback=gotXML`;
-   		yql = `http://ajax.googleapis.com/ajax/services/feed/load?v=1.0&callback=gotXML${$("#historical")[0].checked?"&scoring=h":""}&q=${url}&num=${$("#num")[0].value}&output=json_xml`;
+ 		//yql = `https://anyorigin.com/get/?url=${url}&callback=gotXML`;
+   		yql = `https://ajax.googleapis.com/ajax/services/feed/load?v=1.0&callback=gotXML${$("#historical")[0].checked?"&scoring=h":""}&q=${url}&num=${$("#num")[0].value}&output=json_xml`;
   	}
 	return loadScript(yql + q, function (evt) {
 		//console.log('script load event:');
